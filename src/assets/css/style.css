@@ -1,0 +1,128 @@
+@import "./font.css";
+
+
+
+html {
+	--main-color: 0, 0%, 92%;
+	--accent-color: 0, 0%, 82%;
+	--text-color: 0, 0%, 5%;
+	--placeholder-color: 0, 0%, 92%;
+	--side-bar: 5rem;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+
+:-moz-placeholder {
+	color: hsl(var(--placeholder-color));
+}
+
+::-webkit-input-placeholder {
+	color: hsl(var(--placeholder-color));
+}
+
+input {
+	color: hsl(var(--text-color));
+}
+
+*:focus {
+	outline: none;
+}
+
+:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+:focus::-moz-placeholder {
+	color: transparent;
+}
+
+:focus:-moz-placeholder {
+	color: transparent;
+}
+
+:focus:-ms-input-placeholder {
+	color: transparent;
+}
+
+strong,
+b {
+	font-weight: bold;
+}
+
+em {
+	font-style: italic;
+}
+
+ul,
+ol {
+	padding-left: 2rem;
+	margin-bottom: 1rem;
+}
+
+ul {
+	list-style-type: disc;
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	font: inherit;
+}
+
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+	display: inline;
+	text-decoration: underline;
+}
+
+
+body,
+html {
+	width: 100%;
+	height: 100%;
+}
+
+
+body {
+	background-color: hsl(var(--main-color));
+	color: hsl(var(--text-color));
+	font-family: "Roboto";
+	font-weight: 300;
+}
+
+img{
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+
+.grid {
+	margin: 1rem;
+}
+
+
+
+
+
+@media only screen and (min-width: 320px) and (max-width: 413px) {}
+
+@media only screen and (min-width: 414px) and (max-width: 767px) {}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {}
+
+@media only screen and (min-width: 1024px) {}
