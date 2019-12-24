@@ -7,6 +7,8 @@ html {
 	--accent-color: 0, 0%, 82%;
 	--text-color: 0, 0%, 5%;
 	--placeholder-color: 0, 0%, 92%;
+	--fail-color: 353, 100%, 69%;
+	--success-color: 205, 45%, 68%;
 	--side-bar: 5rem;
 }
 
@@ -104,7 +106,7 @@ body {
 	font-weight: 300;
 }
 
-img{
+img {
 	display: block;
 	width: 100%;
 	height: auto;
@@ -115,14 +117,121 @@ img{
 	margin: 1rem;
 }
 
+p {
+	margin: 0;
+	margin-bottom: .5rem;
+}
+
+.btn {
+	display: inline-block;
+	padding: .5rem 1rem;
+	border: none;
+	border-radius: 0.3rem;
+	background-color: hsl(var(--accent-color));
+	cursor: pointer;
+	text-transform: uppercase;
+}
 
 
 
+.has-focus {
+	border-radius: 3px;
+	box-shadow: 0 0 0 1px #3ea4ffe6;
+}
 
+.success {
+	background-color: hsl(var(--success-color));
+	transition: all .2s ease-in-out;
+}
+
+
+
+/* Дропзона */
+#customdropzone {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-gap: 1rem;
+	min-height: 15rem;
+	border: 2px dashed hsl(var(--accent-color));
+	border-radius: .5rem;
+	padding: .5rem;
+}
+
+#customdropzone .dz-preview {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	border: 1px solid hsl(var(--accent-color));
+	border-radius: .5rem;
+	overflow: hidden;
+}
+
+#customdropzone .dz-preview .dz-description {
+	width: 100%;
+	height: 5rem;
+	border: none;
+	margin-bottom: .3rem;
+}
+
+
+#customdropzone .dz-preview img {
+	object-fit: contain;
+	object-position: center;
+	margin-bottom: 1rem;
+	cursor: grab;
+}
+
+#customdropzone .dz-preview .dz-details {
+	text-align: center;
+}
+
+#customdropzone .dz-preview .dz-details .dz-filename {
+	margin-bottom: .5rem;
+}
+
+#customdropzone .dz-remove {
+	display: block;
+	width: 100%;
+	text-decoration: none;
+	text-align: center;
+	background-color: hsl(var(--fail-color));
+	padding: .3rem .1rem;
+}
+
+/* Дропзона END */
+
+
+@media only screen and (max-width: 1200px) {
+	#customdropzone {
+		grid-template-columns: repeat(5, 1fr);
+	}
+}
+
+@media only screen and (max-width: 1023px) {
+	#customdropzone {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	#customdropzone {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media only screen and (max-width: 413px) {
+	#customdropzone {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+
+
+
+/* 
 @media only screen and (min-width: 320px) and (max-width: 413px) {}
 
 @media only screen and (min-width: 414px) and (max-width: 767px) {}
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {}
 
-@media only screen and (min-width: 1024px) {}
+@media only screen and (min-width: 1024px) {} */
