@@ -1,7 +1,12 @@
 <template>
   <div class="text-editor-header">
     <div class="get">
-      <button class="btn" ref="btnCopyToClipboard" @click="copyToClipboard">Получить</button>
+      <button
+        type="button"
+        ref="btnCopyToClipboard"
+        @click="copyToClipboard"
+        class="button"
+      >Получить</button>
     </div>
   </div>
 </template>

@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import store from "./store";
 import router from './routes';
 import 'normalize.css';
+import 'foundation-sites/dist/css/foundation.min.css';
 import './assets/css/style.css';
 
 Vue.use(VueRouter);

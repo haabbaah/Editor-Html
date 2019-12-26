@@ -267,7 +267,8 @@ export default {
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
   background-color: #fff;
-  border: 1px solid hsl(var(--accent-color));
+	border: 1px solid hsl(var(--accent-color));
+	cursor: pointer;
 }
 
 .menubar button.is-active {
