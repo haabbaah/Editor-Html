@@ -73,7 +73,12 @@
         @click="copyToClipboardSlider"
         class="button"
       >Получить SLIDER</button>
-      <button type="button" class="button">Слияние с текстом</button>
+      <button
+        type="button"
+        @click="mergeWithText"
+        ref="btnMergeWithText"
+        class="button"
+      >Слияние с текстом</button>
       <button type="button" ref @click="clear" class="alert button">Очистить</button>
     </div>
 
@@ -206,7 +211,6 @@ export default {
       genTopCode: '',
       genBottomCode: '',
 
-      activeField: '', // Активное поле
       arrNumRange: [] // Диапазон для создания элементов фото
     };
   },
@@ -243,10 +247,16 @@ export default {
       } else {
         this.genBottomMargin = this.options.genBottomMargin;
       }
-      console.log(newLocalOptions);
     }
   },
   methods: {
+    async mergeWithText() {
+      await this.$store.dispatch('mergeWithText', 1);
+      this.$refs.btnMergeWithText.classList.add('success');
+      setTimeout(() => {
+        this.$refs.btnMergeWithText.classList.remove('success');
+      }, 1000);
+    },
     async copyToClipboard() {
       this.getSingleTags();
       this.genHTML = this.arrGenHTML.join('');
@@ -258,8 +268,8 @@ export default {
       }, 1000);
     },
     async copyToClipboardSlider() {
-			this.getSliderTags();
-			this.genHTML = this.arrGenHTML.join('');
+      this.getSliderTags();
+      this.genHTML = this.arrGenHTML.join('');
 
       await this.$store.dispatch('copyToClipboardGen');
       this.$refs.btnCopyToClipboardSlider.classList.add('success');
@@ -350,21 +360,17 @@ export default {
 					${arrLocalGenHTML.join('')}
 				</div>
 			`);
-
-      console.log(this.arrGenHTML);
     },
     setActiveField(event) {
       let data = +event.target.dataset.gen;
       switch (data) {
         case 1: // Просто число от 1 до заданного
-          this.activeField = '1';
           this.arrNumRange = [];
           for (let i = 1; i <= this.genNum; i++) {
             this.arrNumRange.push(`${i}`);
           }
           break;
         case 2: // Диапазон чисел
-          this.activeField = '2';
           if (!this.genRangeStart) {
             this.genRangeStart = '1';
           }
@@ -381,12 +387,10 @@ export default {
           }
           break;
         case 3: // Только эти фото
-          this.activeField = '3';
           this.arrNumRange = [];
           this.arrNumRange = this.genExact.trim().split(' ');
           break;
         case 4: // Пропуск фото
-          this.activeField = '4';
           this.arrNumRange = [];
           this.arrNumRange = this.genPass.trim().split(' ');
           break;

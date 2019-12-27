@@ -215,8 +215,9 @@ export default {
           })
         ],
         autoFocus: true,
-        onUpdate: ({ getHTML }) => {
+        onUpdate: ({ getHTML, getJSON }) => {
           this.textHTML = getHTML();
+          // this.textJSON = getJSON();
         }
       })
     };
@@ -225,6 +226,14 @@ export default {
     /*    ...mapState({
       textHTML: state => state.textHTML
     }), */
+ /*    textJSON: {
+      get() {
+        return this.$store.state.textJSON;
+      },
+      set(value) {
+        this.$store.commit('setTextJSON', value);
+      }
+    }, */
     textHTML: {
       get() {
         return this.$store.state.textHTML;
@@ -233,6 +242,9 @@ export default {
         this.$store.commit('setTextHTML', value);
       }
     }
+  },
+  mounted() {
+    this.editor.setContent(this.textHTML);
   },
   beforeDestroy() {
     this.editor.destroy();
@@ -267,8 +279,8 @@ export default {
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
   background-color: #fff;
-	border: 1px solid hsl(var(--accent-color));
-	cursor: pointer;
+  border: 1px solid hsl(var(--accent-color));
+  cursor: pointer;
 }
 
 .menubar button.is-active {

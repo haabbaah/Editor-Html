@@ -9,7 +9,12 @@
           class="button"
         >Получить</button>
         <button type="button" class="button" ref="btnGroup" @click="groupImages">объединить</button>
-        <button type="button" class="button">Слияние с текстом</button>
+        <button
+          type="button"
+          @click="mergeWithText"
+          ref="btnMergeWithText"
+          class="button"
+        >Слияние с текстом</button>
         <button type="button" @click="removeImages" class="button alert">Очистить</button>
       </div>
     </div>
@@ -82,6 +87,13 @@ export default {
     }
   },
   methods: {
+    async mergeWithText() {
+      await this.$store.dispatch('mergeWithText', 2);
+      this.$refs.btnMergeWithText.classList.add('success');
+      setTimeout(() => {
+        this.$refs.btnMergeWithText.classList.remove('success');
+      }, 1000);
+    },
     async copyToClipboard() {
       this.arrRawData = [];
       this.arrImageHTML = [];
@@ -153,6 +165,7 @@ export default {
       }
     },
     mergeGroup() {
+      console.log('merge');
       let onlyGroup = this.arrImageHTML.filter(
         (item, index, array) => !!item.id
       );
