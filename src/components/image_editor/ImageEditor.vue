@@ -1,16 +1,16 @@
 <template>
   <div class="image-editor">
     <div class="top">
-      <div class="button-group">
+      <div class="button-group main-btn">
         <button
           type="button"
           ref="btnCopyToClipboard"
           @click="copyToClipboard"
           class="button"
         >Получить</button>
-        <button type="button" class="button" ref="btnGroup" @click="groupImages">сгруппировать</button>
+        <button type="button" class="button" ref="btnGroup" @click="groupImages">объединить</button>
         <button type="button" class="button">Слияние с текстом</button>
-        <button type="button" @click="removeImages" class="button alert">Удалить всё</button>
+        <button type="button" @click="removeImages" class="button alert">Очистить</button>
       </div>
     </div>
 
@@ -175,7 +175,7 @@ export default {
         }
         return {
           index: min,
-					tags: `
+          tags: `
 					
 					<div class="zooming sliding_gallery" itemscope style="margin:auto; margin-top: 2rem; margin-bottom: 2rem;">
 						${group}
@@ -314,6 +314,11 @@ export default {
 </script>
 
  <style scoped>
+.main-btn {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr;
+}
+
 .top {
   position: sticky;
   top: 0;
@@ -321,8 +326,6 @@ export default {
   padding-bottom: 0.5rem;
   background-color: hsl(var(--main-color));
   z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
   margin-bottom: 2rem;
 }
 

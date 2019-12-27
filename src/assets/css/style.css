@@ -137,7 +137,6 @@ p {
 }
 
 
-
 .has-focus {
 	border-radius: 3px;
 	box-shadow: 0 0 0 1px #3ea4ffe6;
@@ -157,7 +156,6 @@ p {
 	height: 100%;
 	background-color: #fff;
 	opacity: .5;
-	backdrop-filter: blur(5px);
 	border-radius: .5rem;
 }
 
@@ -187,6 +185,8 @@ p {
 	border: none;
 	border-bottom: .3rem solid hsl(var(--main-color));
 	margin-bottom: 0;
+	padding: .2rem;
+	font-size: 80%;
 }
 
 
