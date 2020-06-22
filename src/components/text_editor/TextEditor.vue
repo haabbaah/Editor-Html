@@ -83,11 +83,22 @@ export default {
       this.editorData = this.textHTML;
 
       // CKEditorInspector.attach(editor);
+    },
+    async keyNav(event) {
+      if (event.code == 'Space' && event.ctrlKey) {
+        await this.$store.dispatch('copyToClipboard');
+      }
+    },
+    keyDestroy() {
+      document.removeEventListener('keyup', this.keyNav);
     }
   },
   mounted() {},
+  created() {
+    document.addEventListener('keyup', this.keyNav);
+  },
   beforeDestroy() {
-    // this.editor.destroy();
+    this.keyDestroy();
   }
 };
 </script>

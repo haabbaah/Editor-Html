@@ -3,7 +3,7 @@
     <div class="top">
       <div class="top-wrapper">
         <div class="item">
-          <label>
+          <!-- <label>
             Количество элементов
             <input
               type="text"
@@ -12,7 +12,7 @@
               @change="setActiveField"
               v-model="genNum"
             />
-          </label>
+          </label>-->
           <div class="block">
             <label>
               Диапазон
@@ -46,7 +46,7 @@
               v-model="genExact"
             />
           </label>
-          <label>
+          <!-- <label>
             Пропуск фото (ч-з пробел)
             <input
               type="text"
@@ -55,7 +55,7 @@
               @change="setActiveField"
               v-model="genPass"
             />
-          </label>
+          </label>-->
         </div>
       </div>
     </div>
@@ -416,7 +416,8 @@ export default {
   mounted() {
     this.mergeOptions();
   },
-  created() {}
+  created() {},
+  beforeDestroy() {}
 };
 </script> 
 
