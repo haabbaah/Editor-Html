@@ -18,26 +18,6 @@ import '@ckeditor/ckeditor5-build-decoupled-document/build/translations/ru';
 
 import Header from './Header.vue';
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap';
-// import {
-//   Blockquote,
-//   // CodeBlock,
-//   HardBreak,
-//   Heading,
-//   HorizontalRule,
-//   OrderedList,
-//   BulletList,
-//   ListItem,
-//   TodoItem,
-//   TodoList,
-//   Bold,
-//   // Code,
-//   Italic,
-//   Link,
-//   Strike,
-//   Underline,
-//   History,
-//   Focus
-// } from 'tiptap-extensions';
 
 export default {
   name: 'TextEditor',
@@ -52,53 +32,30 @@ export default {
       editor: DocumentEditor,
       editorData: '',
       editorConfig: {
-				language: 'ru'
-			}
-
-      // editor: new Editor({
-      //   extensions: [
-      //     new Blockquote(),
-      //     new BulletList(),
-      //     // new CodeBlock(),
-      //     new HardBreak(),
-      //     new Heading({ levels: [1, 2, 3] }),
-      //     new HorizontalRule(),
-      //     new ListItem(),
-      //     new OrderedList(),
-      //     new TodoItem(),
-      //     new TodoList(),
-      //     new Link(),
-      //     new Bold(),
-      //     // new Code(),
-      //     new Italic(),
-      //     new Strike(),
-      //     new Underline(),
-      //     new History(),
-      //     new Focus({
-      //       className: 'has-focus',
-      //       nested: true
-      //     })
-      //   ],
-      //   autoFocus: true,
-      //   onUpdate: ({ getHTML, getJSON }) => {
-      //     this.textHTML = getHTML();
-      //     // this.textJSON = getJSON();
-      //   }
-      // })
+        language: 'ru',
+        toolbar: [
+          'heading',
+          '|',
+          'bold',
+          'italic',
+          'underline',
+          'strikethrough',
+          '|',
+          'alignment',
+          'numberedList',
+          'bulletedList',
+          'outdent',
+          'indent',
+          'link',
+          'insertTable',
+          '|',
+          'undo',
+          'redo'
+        ]
+      }
     };
   },
   computed: {
-    /*    ...mapState({
-      textHTML: state => state.textHTML
-    }), */
-    /*    textJSON: {
-      get() {
-        return this.$store.state.textJSON;
-      },
-      set(value) {
-        this.$store.commit('setTextJSON', value);
-      }
-    }, */
     textHTML: {
       get() {
         return this.$store.state.textHTML;
@@ -106,6 +63,11 @@ export default {
       set(value) {
         this.$store.commit('setTextHTML', value);
       }
+    }
+  },
+  watch: {
+    editorData(val) {
+      this.textHTML = val;
     }
   },
   methods: {
@@ -118,14 +80,25 @@ export default {
           editor.ui.getEditableElement()
         );
 
+      this.editorData = this.textHTML;
+
       // CKEditorInspector.attach(editor);
+    },
+    async keyNav(event) {
+      if (event.code == 'Space' && event.ctrlKey) {
+        await this.$store.dispatch('copyToClipboard');
+      }
+    },
+    keyDestroy() {
+      document.removeEventListener('keyup', this.keyNav);
     }
   },
-  mounted() {
-    // this.editor.setContent(this.textHTML);
+  mounted() {},
+  created() {
+    document.addEventListener('keyup', this.keyNav);
   },
   beforeDestroy() {
-    // this.editor.destroy();
+    this.keyDestroy();
   }
 };
 </script>

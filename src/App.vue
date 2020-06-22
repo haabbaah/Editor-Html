@@ -59,7 +59,7 @@ export default {
 
 .main {
   padding: 2rem;
-  margin-left: calc(var(--side-bar));
+	margin-left: calc(var(--side-bar));
 }
 
 .side-bar {
