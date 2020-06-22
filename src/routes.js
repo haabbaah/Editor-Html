@@ -23,7 +23,7 @@ const router = new VueRouter({
 			component: ImageEditor,
 		}
 	],
-	mode: 'history'
+	// mode: 'history'
 });
 
 
