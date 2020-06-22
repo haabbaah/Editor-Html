@@ -8,6 +8,9 @@
 		"lint": "vue-cli-service lint"
 	},
 	"dependencies": {
+		"@ckeditor/ckeditor5-build-decoupled-document": "^19.0.2",
+		"@ckeditor/ckeditor5-editor-decoupled": "^19.0.1",
+		"@ckeditor/ckeditor5-vue": "^1.0.1",
 		"core-js": "^3.4.3",
 		"foundation-sites": "^6.6.1",
 		"normalize.css": "^8.0.1",
